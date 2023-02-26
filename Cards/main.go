@@ -1,14 +1,25 @@
 package main
 
+import "fmt"
+
 func main() {
 
-	cards := deck{newCard(), newCard()}
-	cards = append(cards, newCard())
+	cards := newDeck()
 
 	cards.print()
-
-}
-
-func newCard() string {
-	return "Five of Diamonds"
+	fmt.Println("---------")
+	hand, remainingCards := deal(cards, 5)
+	hand.print()
+	fmt.Println("---------")
+	remainingCards.print()
+	fmt.Println("---------")
+	print(cards.toString())
+	cards.saveToFile("ragstesting")
+	fmt.Println("new cards---------")
+	newcards := newDeckFromFile("ragstesting")
+	newcards.print()
+	fmt.Println(" shuffle---------")
+	cards.shuffle()
+	cards.print()
+	fmt.Println("---------")
 }
